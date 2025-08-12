@@ -114,85 +114,85 @@ public class MovieControllerIT {
 		result.andExpect(status().isNotFound());
 	}
 	
-//	@Test
-//	public void findByGenreShouldReturnUnauthorizedWhenNoTokenGiven() throws Exception {
-//
-//		ResultActions result =
-//				mockMvc.perform(get("/movies")
-//					.contentType(MediaType.APPLICATION_JSON));
-//
-//		result.andExpect(status().isUnauthorized());
-//	}
-//
-//	@Test
-//	public void findByGenreShouldReturnOrderedPageWhenVisitorAuthenticated() throws Exception {
-//
-//		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
-//
-//		ResultActions result =
-//				mockMvc.perform(get("/movies")
-//					.header("Authorization", "Bearer " + accessToken)
-//					.contentType(MediaType.APPLICATION_JSON));
-//
-//		result.andExpect(status().isOk());
-//		
-//		result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].title").value("A Voz do Silêncio"));
-//		result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
-//
-//		result.andExpect(jsonPath("$.content[1].title").value("Bob Esponja"));
-//		result.andExpect(jsonPath("$.content[2].title").value("Código de Conduta"));
-//		result.andExpect(jsonPath("$.content[3].title").value("Kingsman"));
-//		result.andExpect(jsonPath("$.content[4].title").value("O Labirinto do Fauno"));
-//	}
-//
-//	@Test
-//	public void findByGenreShouldReturnOrderedPageWhenMemberAuthenticated() throws Exception {
-//
-//		String accessToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);
-//		
-//		ResultActions result =
-//				mockMvc.perform(get("/movies")
-//					.header("Authorization", "Bearer " + accessToken)
-//					.contentType(MediaType.APPLICATION_JSON));
-//
-//		result.andExpect(status().isOk());
-//		
-//		result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].title").value("A Voz do Silêncio"));
-//		result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
-//
-//		result.andExpect(jsonPath("$.content[1].title").value("Bob Esponja"));
-//		result.andExpect(jsonPath("$.content[2].title").value("Código de Conduta"));
-//		result.andExpect(jsonPath("$.content[3].title").value("Kingsman"));
-//		result.andExpect(jsonPath("$.content[4].title").value("O Labirinto do Fauno"));
-//	}
-//
-//	@Test
-//	public void findByGenreShouldReturnFilteredMoviesWhenGenreIsInformed() throws Exception {
-//
-//		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
-//
-//		long genreId = 1L;
-//		
-//		ResultActions result =
-//				mockMvc.perform(get("/movies?genreId=" + genreId)
-//					.header("Authorization", "Bearer " + accessToken)
-//					.contentType(MediaType.APPLICATION_JSON));
-//
-//		result.andExpect(status().isOk());
-//		
-//		result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].title").value("Bob Esponja"));
-//		result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
-//		result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
-//
-//		result.andExpect(jsonPath("$.content[1].title").value("Kingsman"));
-//		result.andExpect(jsonPath("$.content[2].title").value("Sonic"));
-//	}
+	@Test
+	public void findByGenreShouldReturnUnauthorizedWhenNoTokenGiven() throws Exception {
+
+		ResultActions result =
+				mockMvc.perform(get("/movies")
+					.contentType(MediaType.APPLICATION_JSON));
+
+		result.andExpect(status().isUnauthorized());
+	}
+
+	@Test
+	public void findByGenreShouldReturnOrderedPageWhenVisitorAuthenticated() throws Exception {
+
+		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
+
+		ResultActions result =
+				mockMvc.perform(get("/movies")
+					.header("Authorization", "Bearer " + accessToken)
+					.contentType(MediaType.APPLICATION_JSON));
+
+		result.andExpect(status().isOk());
+		
+		result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].title").value("A Voz do Silêncio"));
+		result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
+
+		result.andExpect(jsonPath("$.content[1].title").value("Bob Esponja"));
+		result.andExpect(jsonPath("$.content[2].title").value("Código de Conduta"));
+		result.andExpect(jsonPath("$.content[3].title").value("Kingsman"));
+		result.andExpect(jsonPath("$.content[4].title").value("O Labirinto do Fauno"));
+	}
+
+	@Test
+	public void findByGenreShouldReturnOrderedPageWhenMemberAuthenticated() throws Exception {
+
+		String accessToken = tokenUtil.obtainAccessToken(mockMvc, memberUsername, memberPassword);
+		
+		ResultActions result =
+				mockMvc.perform(get("/movies")
+					.header("Authorization", "Bearer " + accessToken)
+					.contentType(MediaType.APPLICATION_JSON));
+
+		result.andExpect(status().isOk());
+		
+		result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].title").value("A Voz do Silêncio"));
+		result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
+
+		result.andExpect(jsonPath("$.content[1].title").value("Bob Esponja"));
+		result.andExpect(jsonPath("$.content[2].title").value("Código de Conduta"));
+		result.andExpect(jsonPath("$.content[3].title").value("Kingsman"));
+		result.andExpect(jsonPath("$.content[4].title").value("O Labirinto do Fauno"));
+	}
+
+	@Test
+	public void findByGenreShouldReturnFilteredMoviesWhenGenreIsInformed() throws Exception {
+
+		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
+
+		long genreId = 1L;
+		
+		ResultActions result =
+				mockMvc.perform(get("/movies?genreId=" + genreId)
+					.header("Authorization", "Bearer " + accessToken)
+					.contentType(MediaType.APPLICATION_JSON));
+
+		result.andExpect(status().isOk());
+		
+		result.andExpect(jsonPath("$.content[0].id").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].title").value("Bob Esponja"));
+		result.andExpect(jsonPath("$.content[0].subTitle").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].year").isNotEmpty());
+		result.andExpect(jsonPath("$.content[0].imgUrl").isNotEmpty());
+
+		result.andExpect(jsonPath("$.content[1].title").value("Kingsman"));
+		result.andExpect(jsonPath("$.content[2].title").value("Sonic"));
+	}
 }
