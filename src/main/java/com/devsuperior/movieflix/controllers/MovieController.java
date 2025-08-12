@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.movieflix.dto.MovieCardDTO;
 import com.devsuperior.movieflix.dto.MovieDetailsDTO;
+import com.devsuperior.movieflix.dto.MovieReviewDTO;
 import com.devsuperior.movieflix.services.MovieService;
 
 @RestController
@@ -24,18 +25,25 @@ public class MovieController {
 	private MovieService service;
 
 	@PreAuthorize("hasAnyRole('ROLE_VISITOR','ROLE_MEMBER')")
+	@GetMapping(value = "/{id}/reviews")
+	public ResponseEntity<MovieReviewDTO> findByIdWithReview(@PathVariable Long id) {
+		MovieReviewDTO dto = service.findByIdWithReview(id);
+		return ResponseEntity.ok().body(dto);
+	}
+
+	@PreAuthorize("hasAnyRole('ROLE_VISITOR','ROLE_MEMBER')")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<MovieDetailsDTO> findById(@PathVariable Long id) {
 		MovieDetailsDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
-	
+
 	@PreAuthorize("hasAnyRole('ROLE_VISITOR','ROLE_MEMBER')")
 	@GetMapping
-	public ResponseEntity<Page<MovieCardDTO>> findAll(
-			@RequestParam(required = false, value = "genreId") Long genreId,
+	public ResponseEntity<Page<MovieCardDTO>> findAll(@RequestParam(required = false, value = "genreId") Long genreId,
 			@PageableDefault(sort = "title") Pageable pageable) {
-		Page<MovieCardDTO> list = service.findAllPaged(genreId, pageable);		
+		Page<MovieCardDTO> list = service.findAllPaged(genreId, pageable);
 		return ResponseEntity.ok().body(list);
 	}
+
 }

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.movieflix.dto.MovieCardDTO;
 import com.devsuperior.movieflix.dto.MovieDetailsDTO;
+import com.devsuperior.movieflix.dto.MovieReviewDTO;
 import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.projections.MovieProjection;
 import com.devsuperior.movieflix.repositories.MovieRepository;
@@ -29,6 +30,13 @@ public class MovieService {
 		Optional<Movie> obj = repository.findById(id);
 		Movie entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new MovieDetailsDTO(entity);
+	}
+	
+	@Transactional(readOnly = true)
+	public MovieReviewDTO findByIdWithReview(Long id) {
+		Optional<Movie> obj = repository.findById(id);
+		Movie entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+		return new MovieReviewDTO(entity);
 	}
 
 	@SuppressWarnings("unchecked")
